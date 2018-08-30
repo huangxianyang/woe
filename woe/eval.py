@@ -10,10 +10,10 @@ import pickle
 
 def compute_ks(proba,target):
     '''
-    target: numpy array of shape (1,)
-    proba: numpy array of shape (1,), predicted probability of the sample being positive
+    target: numpy array of shape (1,) 真实值,类数组
+    proba: numpy array of shape (1,), predicted probability of the sample being positive #预测正例概率
     returns:
-    ks: float, ks score estimation
+    ks: float, ks score estimation #ks值
     '''
     get_ks = lambda proba, target: ks_2samp(proba[target == 1], proba[target != 1]).statistic
 
@@ -22,10 +22,10 @@ def compute_ks(proba,target):
 
 def eval_feature_detail(Info_Value_list,out_path=False):
     """
-    format InfoValue list to Dataframe
+    format InfoValue list to Dataframe 输出特征信息值标准化
     :param Info_Value_list: Instance list of Class InfoValue
     :param out_path:specify the Dataframe to csv file path ,default False
-    :return:DataFrame about feature detail
+    :return:DataFrame about feature detail 输出特征信息价值IV
     """
     rst = Info_Value_list
     format_rst = []
@@ -123,8 +123,8 @@ def eval_model_summary(list_dict,out_path=False):
 
 def wald_test(model,X):
     '''
-    :param model: a model file that should have predict_proba() function
-    :param X: dataset features DataFrame
+    :param model: a model file that should have predict_proba() function 预测概率模型
+    :param X: dataset features DataFrame 入模数据集
     :return: the value of wald_stats,p_value
     '''
     pred_probs = np.matrix(model.predict_proba(X))
